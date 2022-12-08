@@ -57,11 +57,16 @@ class Resource:
         ru = Resource.__allRes[packageName].get(key, 'undefined')
         return ru
 
-    def GetImage(key):
-        print(Resource.Get(key))
-        try:
-            return _pygame.image.load(Resource.Get(key))
-        except:
+    def GetImage(packageName, key):
+        if Resource.__allRes.get(packageName) == None:
+            try:
+                return _pygame.image.load(Resource.Get(packageName, key))
+            except:
+                _cmd.Command.delog(f"Image: ", _cmd.TextColor.Red).delog(f"{key}", _cmd.TextColor.Bule).delog(f" is not fine.", _cmd.TextColor.Red, True)
+                ru = _pygame.surface.Surface((20,20))
+                ru.fill((100,0,50))
+                return ru
+        else:
             _cmd.Command.delog(f"Image: ", _cmd.TextColor.Red).delog(f"{key}", _cmd.TextColor.Bule).delog(f" is not fine.", _cmd.TextColor.Red, True)
             ru = _pygame.surface.Surface((20,20))
             ru.fill((100,0,50))

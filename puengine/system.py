@@ -68,6 +68,7 @@ class System:
     """遊戲幀數，更改數值將造成嚴重後果。"""
     running = True
     CLOCK = _pg.time.Clock()
+    key_name = {}
 
     @staticmethod
     def __keypress_load(arg):
@@ -129,6 +130,9 @@ class System:
         _ev.addEvent(System.Type.MOUSE_DOWN, mousepress_load)
         _ev.addEvent(System.Type.MOUSE_UP, mousepress_pop)
 
+        ## 註冊按鍵名稱對應表
+        System.key_name = _pr.Load('puengine/pur/keycode.pur', False, False)
+
         '''開發者模式設定'''
         ## Print mouse pos
         def print_mouse_pos(args):
@@ -143,9 +147,11 @@ class System:
             else: _cmd.Command.delog('print_mouse_pos {arg} is boolen', _cmd.TextColor.Red, True)
         _cmd.Command.command_register("print_mouse_pos", on_off__print_mouse_pos, _re.Get("puengine" ,"print_mouse_pos_help"))
         
-        def testKey(args):
-            _cmd.Command.delog(f"@{args['key']}: <n> \"{_pg.key.name(args['key'])}\";", close=True)
-        _ev.addEvent(System.Type.KEY_DOWN, testKey)
+        ## print key
+        if System.profile['developer.key_down']:
+            def testKey(args):
+                _cmd.Command.delog(f"@{args['key']}: <n> \"{_pg.key.name(args['key'])}\";", close=True)
+            _ev.addEvent(System.Type.KEY_DOWN, testKey)
         
         ## Open command function
         if System.profile['developer.open_cmd']:

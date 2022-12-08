@@ -1,12 +1,14 @@
 $選定語言;
 @language: <s> "zh_tw";
 $是否啟用遊戲內置鼠標;
-@use_gamemouse: <b> "True";
+@use_gamemouse: <b> "False";
 $是否在滑鼠點擊時顯示座標;
-@developer.print_mouse_pos: <b> "True";
+@developer.print_mouse_pos: <b> "False";
 $是否啟用命令功能;
-@developer.open_cmd: <b> "True";
+@developer.open_cmd: <b> "False";
 $是否啟用視窗大小調整(測試功能，請謹慎使用。);
 @window.resizeble: <b> "False";
 $視窗的預設大小;
 @window.size: <tuple> "(1280,720)";
+$是否顯示按下按鍵的資訊;
+@developer.key_down: <b> "False";

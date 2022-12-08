@@ -27,7 +27,9 @@ if __name__ == '__main__':
                 puengine.Event.send(puengine.System.Type.MOUSE_MOVE, {'pos': event.pos})
         puengine.System.mouseEvent()
         ######################################################################
+        puengine.Event.send('update.start')
         puengine.Event.send(puengine.System.Type.UPDATE)
+        puengine.Event.send('update.stop')
         ######################################################################
         puengine.System.CLOCK.tick(puengine.System.FPS)
         pygame.display.update()
